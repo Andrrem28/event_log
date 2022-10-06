@@ -10,10 +10,18 @@
             </div>
             <div id="info-container" class="col-md-6">
                 <h1>{{ $event->title }}</h1>
-                  <p class="event-city"><i class="bi bi-geo-alt"></i> {{ $event->city }}</p>
-                  <p class="events-participants"><i class="bi bi-people"></i> X Participantes</p>
-                  <p class="event-owner"><i class="bi bi-star"></i> {{ $eventOwner['name'] }}</p>
-                <a href="#" class="btn btn-primary" id="event-submit"> Confirmar presença</a>
+                    <p class="event-city"><i class="bi bi-geo-alt"></i> {{ $event->city }}</p>
+                    <p class="events-participants"><i class="bi bi-people"></i> {{count($event->users)}} Participantes</p>
+                    <p class="event-owner"><i class="bi bi-star"></i> {{ $eventOwner['name'] }}</p>
+                  <form action="{{ route('events.join', $event->id) }}" method="post">
+                    @csrf
+                     <a href="{{route('events.join', $event->id)}}"
+                        class="btn btn-primary"
+                        id="event-submit"
+                        onclick="event.preventDefault(); this.closest('form').submit();">
+                        Confirmar presença
+                    </a>
+                  </form>
                 <h3>O evento conta com:</h3>
 
                 <ul id="items-list">
