@@ -64,7 +64,9 @@ header {
     margin: 0;
     font-size: 15px;
 }
-
+#description-container {
+    margin-top: 20px;
+}
 #info-container h3, #description-container h3 {
     font-size: 20px;
     font-weight: bold;
