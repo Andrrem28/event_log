@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\{Event, User};
 use Illuminate\Support\Facades\DB;
 use Exception;
+use PhpParser\Node\Stmt\TryCatch;
 
 class EventController extends Controller
 {
@@ -26,7 +27,7 @@ class EventController extends Controller
           }
             return view('welcome', [
                 'events' => $events,
-                 'search' => $search
+                'search' => $search
                 ]);
     }
 
@@ -90,15 +91,34 @@ class EventController extends Controller
         ]);
     }
 
+    public function destroy(int $id)
+    {
+        DB::beginTransaction();
+
+        try {
+            Event::findOrFail($id)
+            ->delete();
+
+            DB::commit();
+            return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso');
+        }
+
+        catch(Exception $e){
+            DB::rollBack();
+
+        }
+    }
+
     public function dashboard()
     {
-        $user = auth()->user();
+            $user = auth()->user();
 
-        $events = $user->events;
+            $events = $user->events;
 
-        return view('events.dashboard',
-        [
-            'events' => $events
-        ]);
+
+            return view('events.dashboard',
+            [
+                'events' => $events
+            ]);
     }
 }

@@ -24,14 +24,19 @@
                     <td scope="row">{{ $loop->index + 1 }}</th>
                     <td scope="row"><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td>
                     <td>0</td>
-                    <td><a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pen">Editar</i></a> <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Deletar</a> </td>
+                    <td><a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pen">Editar</i></a>
+                        <form action="{{ route('events.destroy', $event->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                          <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Deletar</button>
+                        </td>
+                    </form>
                 </tr>
             @endforeach
         </tbody>
     </table>
     @else
-
-    <p>Você não tem nenhum evento, <a href={{ route('events.create')}}>Click aqui para criar.</a></p>
+        <p>Você não tem nenhum evento cadastrado, <a href="{{ route('events.create') }}" class="btn btn-primary btn-sm">Click aqui para criar.</a></p>
     @endif
 
 </div>

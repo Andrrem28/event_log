@@ -29,7 +29,7 @@
                         <a href="/" class="nav-link">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/events/create" class="nav-link">Criar Evento</a>
+                        <a href="{{ route('events.create')}}" class="nav-link">Criar Evento</a>
                     </li>
                     @auth
                         <li class="nav-item">

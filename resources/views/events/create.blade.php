@@ -5,7 +5,7 @@
 @section('content')
 <div id="event-create-container" class="col-md-6 offset-md-3">
     <h1>Crie o seu evento</h1>
-    <form action="/events" method="post" enctype="multipart/form-data">
+    <form action="{{ route('events.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         @if(session('msg-error'))
