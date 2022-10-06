@@ -61,13 +61,19 @@
                     <td scope="row">{{ $loop->index + 1 }}</th>
                     <td scope="row"><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td>
                     <td>{{ count($event->users) }}</td>
-                    <td><a href="" class="btn btn-primary btn-sm"><i class="bi bi-door-open"></i> Deixar evento</a></td>
+                    <td>
+                        <form action="{{ route('events.leave', $event->id )}}" method="post">
+                            @csrf
+                            @method("delete")
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-door-open"></i> Deixar evento</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     @else
-        <p>Você ainda não particia de nenhum evento.<a href="{{ route('events.index') }}" class="btn btn-primary btn-sm">Ver todos os eventos.</a></p>
+        <p>Você ainda não particia de nenhum evento, <a href="{{ route('events.index') }}" class="btn btn-primary btn-sm">Ver todos os eventos.</a></p>
     @endif
 </div>
 @endsection

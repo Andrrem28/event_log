@@ -238,4 +238,11 @@ footer p {
     margin-bottom: 0;
 }
 
-
+#info-container .already-joined-msg {
+    margin: 15px 0;
+    color: #004058;
+    background-color: #cce5ff;
+    border: 1px solid #b8daff;
+    padding: 10px;
+    width: 275px;
+}
