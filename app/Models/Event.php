@@ -13,6 +13,8 @@ class Event extends Model
         'items' => 'array'
     ];
 
+    protected $guarded = [];
+     
     protected $dates = ['date'];
 
     public function user() {

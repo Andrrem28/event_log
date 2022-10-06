@@ -108,6 +108,12 @@ header {
 .dashboard-events-container form {
     display: inline-block;
 }
+
+/* Edit Page */
+.img-preview {
+    width: 100px;
+    margin-top: 20px;
+}
 /* navbar */
 
 #navbar img {

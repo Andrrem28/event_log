@@ -91,6 +91,35 @@ class EventController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+      $event = Event::findOrFail($id);
+
+      return view('events.edit',
+      [
+        'event' => $event
+      ]);
+
+    }
+
+    public function update(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            Event::findOrFail($request->id)->update($request->all());
+
+            DB::commit();
+
+            return redirect('/dashboard')->with('msg', 'Evento atualizado com sucesso');
+
+        } catch(Exception $e){
+            dd($request);
+            DB::rollBack();
+        }
+
+    }
+
     public function destroy(int $id)
     {
         DB::beginTransaction();
